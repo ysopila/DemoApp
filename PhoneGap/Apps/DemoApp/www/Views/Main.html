@@ -1,0 +1,8 @@
+﻿<ul data-role="listview" data-inset="true" data-ng-repeat="item in Collection">
+    <li>
+        <a href="#{{item.Type}}" data-ng-click="Load(item)">
+            <div class="name">{{item.Name}}</div>
+            <div>{{item.Description}}</div>
+        </a>
+    </li>
+</ul>

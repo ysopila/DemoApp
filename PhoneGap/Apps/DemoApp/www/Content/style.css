@@ -1,0 +1,6 @@
+﻿img.photo {
+    display: inline-block;
+    vertical-align: middle;
+    border: 1px solid #AAA;
+    margin-top: 10px;
+}

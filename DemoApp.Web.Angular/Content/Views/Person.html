@@ -1,0 +1,33 @@
+﻿<form class="form-horizontal col-md-10" role="form">
+    <div class="form-group">
+        <label class="col-lg-2 control-label">First name</label>
+        <div class="col-lg-10">
+            <p class="form-control-static">{{Person.FirstName}}</p>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-lg-2 control-label">Last name</label>
+        <div class="col-lg-10">
+            <p class="form-control-static">{{Person.LastName}}</p>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-lg-2 control-label">Birthdate</label>
+        <div class="col-lg-10">
+            <p class="form-control-static">{{Person.BirthDate}}</p>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-lg-2 control-label">Gender</label>
+        <div class="col-lg-10">
+            <p class="form-control-static">{{Gender[Person.Gender]}}</p>
+        </div>
+    </div>
+    <hr />
+    <div class="form-group">
+        <div class="col-lg-offset-2 col-lg-10">
+            <a class="btn btn-info" href="#!/{{Person.Type}}/edit/{{Person.Id}}"><span class="glyphicon glyphicon-edit"></span><span>&nbsp;Edit</span></a>
+        </div>
+    </div>
+</form>

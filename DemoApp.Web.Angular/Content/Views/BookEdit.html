@@ -1,0 +1,38 @@
+﻿<form class="form-horizontal col-md-10" role="form">
+    <div class="form-group">
+        <label for="inputName" class="col-lg-2 control-label">Name</label>
+        <div class="col-lg-10">
+            <input type="text" class="form-control" id="inputName" placeholder="Name" data-ng-model="Book.Name" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="inputDescription" class="col-lg-2 control-label">Description</label>
+        <div class="col-lg-10">
+            <input type="text" class="form-control" id="inputDescription" placeholder="Description" data-ng-model="Book.Description" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="inputAuthor" class="col-lg-2 control-label">Author</label>
+        <div class="col-lg-10">
+            <select data-ng-model="AuthorId" id="inputAuthor" class="form-control" data-ng-options="value.Id as (value.FirstName + ' ' + value.LastName) for value in Authors"></select>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="inputPublished" class="col-lg-2 control-label">Published</label>
+        <div class="col-lg-10">
+            <input type="text" class="form-control" id="inputPublished" placeholder="Published" data-ng-model="Book.Published" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="inputCopyright" class="col-lg-2 control-label">Copyright</label>
+        <div class="col-lg-10">
+            <input type="text" class="form-control" id="inputCopyright" placeholder="Copyright" data-ng-model="Book.Copyright" />
+        </div>
+    </div>
+    <hr />
+    <div class="form-group">
+        <div class="col-lg-offset-2 col-lg-10">
+            <a class="btn btn-success" data-ng-click="Save()" href="#!/{{Book.Type}}/{{Book.Id}}"><span class="glyphicon glyphicon-ok"></span><span>&nbsp;Save</span></a>
+        </div>
+    </div>
+</form>

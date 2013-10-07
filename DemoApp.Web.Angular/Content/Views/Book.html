@@ -1,0 +1,38 @@
+﻿<form class="form-horizontal col-md-10" role="form">
+    <div class="form-group">
+        <label class="col-lg-2 control-label">Name</label>
+        <div class="col-lg-10">
+            <p class="form-control-static">{{Book.Name}}</p>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-lg-2 control-label">Description</label>
+        <div class="col-lg-10">
+            <p class="form-control-static">{{Book.Description}}</p>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-lg-2 control-label">Author</label>
+        <div class="col-lg-10">
+            <p class="form-control-static">{{Book.Author.FirstName}} {{Book.Author.LastName}}</p>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-lg-2 control-label">Published</label>
+        <div class="col-lg-10">
+            <p class="form-control-static">{{Book.Published}}</p>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-lg-2 control-label">Copyright</label>
+        <div class="col-lg-10">
+            <p class="form-control-static">{{Book.Copyright}}</p>
+        </div>
+    </div>
+    <hr />
+    <div class="form-group">
+        <div class="col-lg-offset-2 col-lg-10">
+            <a class="btn btn-info" href="#!/{{Book.Type}}/edit/{{Book.Id}}"><span class="glyphicon glyphicon-edit"></span><span>&nbsp;Edit</span></a>
+        </div>
+    </div>
+</form>

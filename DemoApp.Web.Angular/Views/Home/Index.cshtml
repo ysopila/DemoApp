@@ -1,0 +1,43 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section scripts {
+    <script src="@Url.Content("~/Scripts/Application/Base.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/Application/Authentication.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/Application/Account.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/Application/Content.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/Application/Person.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/Application/Book.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/Application/Application.js")" type="text/javascript"></script>
+}
+<div data-ng-controller="AccountController">
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="navbar-header">
+            <a class="navbar-brand">DemoApp</a>
+        </div>
+        <form class="navbar-form navbar-right" role="form">
+            <div class="form-group">
+                <input type="text" data-ng-show="!IsAuthenticated" class="form-control" id="username" placeholder="Username" data-ng-model="Account.Username">
+            </div>
+            <div class="form-group">
+                <input type="password" data-ng-show="!IsAuthenticated" class="form-control" id="password" placeholder="Password" data-ng-model="Account.Password">
+            </div>
+            <button type="submit" data-ng-show="!IsAuthenticated" class="btn btn-default" data-ng-click="SignIn()">Sign In</button>
+            <button type="submit" data-ng-show="IsAuthenticated" class="btn btn-default" data-ng-click="SignOut()">Sign Out</button>
+        </form>
+        <span class="navbar-text pull-right" data-ng-show="IsAuthenticated">Welcome <b>{{Account.Username}}</b></span>
+    </nav>
+
+    <div class="row" data-ng-show="IsAuthenticated">
+        <div class="col-md-3" data-ng-controller="ContentController">
+            <div class="list-group">
+                <a data-ng-repeat="item in Collection" class="list-group-item {{item.Type}}" href="#!/{{item.Type}}/{{item.Id}}">
+                    <div>{{item.Name}}</div>
+                    <div>{{item.Description}}</div>
+                </a>
+            </div>
+        </div>
+        <div class="col-md-9 ng-view"></div>
+    </div>
+</div>

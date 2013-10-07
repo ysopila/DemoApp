@@ -1,0 +1,9 @@
+/// <reference path="../typings/angularjs/angular.d.ts"/>
+/// <reference path="../typings/angularjs/angular-resource.d.ts"/>
+/// <reference path="Base.ts"/>
+/// <reference path="Authentication.ts"/>
+/// <reference path="Content.ts"/>
+/// <reference path="Account.ts"/>
+/// <reference path="Person.ts"/>
+/// <reference path="Book.ts"/>
+/// <reference path="Application.ts"/>

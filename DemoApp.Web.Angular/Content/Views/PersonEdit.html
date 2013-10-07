@@ -1,0 +1,33 @@
+﻿<form class="form-horizontal col-md-10" role="form">
+    <div class="form-group">
+        <label for="inputFirstName" class="col-lg-2 control-label">First name</label>
+        <div class="col-lg-10">
+            <input type="text" class="form-control" id="inputFirstName" placeholder="First name" data-ng-model="Person.FirstName" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="inputLastName" class="col-lg-2 control-label">Last name</label>
+        <div class="col-lg-10">
+            <input type="text" class="form-control" id="inputLastName" placeholder="Description" data-ng-model="Person.LastName" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="inputBirthdate" class="col-lg-2 control-label">Birthdate</label>
+        <div class="col-lg-10">
+            <input type="text" class="form-control" id="inputBirthdate" placeholder="Birthdate" data-ng-model="Person.BirthDate" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="inputGender" class="col-lg-2 control-label">Gender</label>
+        <div class="col-lg-10">
+            <select class="form-control" id="inputGender" data-ng-model="Person.Gender" data-ng-options="label as value for (key, value) in MapGender()"></select>
+        </div>
+    </div>
+    <hr />
+    <div class="form-group">
+        <div class="col-lg-offset-2 col-lg-10">
+            <a class="btn btn-success" data-ng-click="Save()" href="#!/{{Person.Type}}/{{Person.Id}}"><span class="glyphicon glyphicon-ok"></span><span>&nbsp;Save</span></a>
+        </div>
+    </div>
+</form>
