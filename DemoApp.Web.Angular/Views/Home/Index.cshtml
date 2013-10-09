@@ -16,15 +16,10 @@
         <div class="navbar-header">
             <a class="navbar-brand">DemoApp</a>
         </div>
-        <form class="navbar-form navbar-right" role="form">
-            <div class="form-group">
-                <input type="text" data-ng-show="!IsAuthenticated" class="form-control" id="username" placeholder="Username" data-ng-model="Account.Username">
-            </div>
-            <div class="form-group">
-                <input type="password" data-ng-show="!IsAuthenticated" class="form-control" id="password" placeholder="Password" data-ng-model="Account.Password">
-            </div>
-            <button type="submit" data-ng-show="!IsAuthenticated" class="btn btn-default" data-ng-click="SignIn()">Sign In</button>
-            <button type="submit" data-ng-show="IsAuthenticated" class="btn btn-default" data-ng-click="SignOut()">Sign Out</button>
+        <form class="navbar-form navbar-right" role="form" data-ng-show="IsLoaded">
+            <button type="submit" data-ng-show="!IsAuthenticated" class="btn btn-success" data-ng-click="ShowSignInForm = true; ShowRegistrationForm = false;"><span class="glyphicon glyphicon-log-in"></span><span>&nbsp;Sign In</span></button>
+            <button type="submit" data-ng-show="!IsAuthenticated" class="btn btn-info" data-ng-click="ShowRegistrationForm = true; ShowSignInForm = false;"><span class="glyphicon glyphicon-user"></span><span>&nbsp;Register</span></button>
+            <button type="submit" data-ng-show="IsAuthenticated" class="btn btn-primary" data-ng-click="SignOut()"><span>Sign Out&nbsp;</span><span class="glyphicon glyphicon-log-out"></span></button>
         </form>
         <span class="navbar-text pull-right" data-ng-show="IsAuthenticated">Welcome <b>{{Account.Username}}</b></span>
     </nav>
@@ -39,5 +34,57 @@
             </div>
         </div>
         <div class="col-md-9 ng-view"></div>
+    </div>
+
+    <div class="row" data-ng-show="ShowRegistrationForm">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            <form class="form-horizontal" role="form">
+                <div class="form-group">
+                    <label for="r_username" class="col-lg-2 control-label">Username</label>
+                    <div class="col-lg-10">
+                        <input type="text" class="form-control" id="r_username" placeholder="Username" data-ng-model="Account.Username">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="r_password" class="col-lg-2 control-label">Password</label>
+                    <div class="col-lg-10">
+                        <input type="password" class="form-control" id="r_password" placeholder="Password" data-ng-model="Account.Password">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-lg-offset-2 col-lg-10">
+                        <button type="submit" class="btn btn-default" data-ng-click="Register()">Register</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+
+    <div class="row" data-ng-show="ShowSignInForm">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            <form class="form-horizontal" role="form">
+                <div class="form-group">
+                    <label for="s_username" class="col-lg-2 control-label">Username</label>
+                    <div class="col-lg-10">
+                        <input type="text" class="form-control" id="s_username" placeholder="Username" data-ng-model="Account.Username">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="s_password" class="col-lg-2 control-label">Password</label>
+                    <div class="col-lg-10">
+                        <input type="password" class="form-control" id="s_password" placeholder="Password" data-ng-model="Account.Password">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-lg-offset-2 col-lg-10">
+                        <button type="submit" class="btn btn-default" data-ng-click="SignIn()">Sign In</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col-md-3"></div>
     </div>
 </div>

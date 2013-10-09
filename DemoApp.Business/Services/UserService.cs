@@ -48,7 +48,9 @@ namespace DemoApp.Business.Services
 
         public User Get(string username)
         {
-            return _mapper.Map<Data.Entities.User, User>(_repository.Get().OfType<Data.Entities.User>().SingleOrDefault(x => x.Username == username));
+            var user = _repository.Get().OfType<Data.Entities.User>().SingleOrDefault(x => x.Username == username);
+            if (user == null) return null;
+            return _mapper.Map<Data.Entities.User, User>(user);
         }
 
         public User Add(User model)

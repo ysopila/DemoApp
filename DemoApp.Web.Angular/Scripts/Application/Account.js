@@ -19,6 +19,7 @@ var Application;
             $scope.SignIn = function () {
                 _this.auth.SignIn($scope.Account, function () {
                     $scope.IsAuthenticated = true;
+                    $scope.ShowSignInForm = false;
                     $rootScope.$broadcast("updateCollection");
                 }, function (error) {
                     console.log(error);
@@ -32,6 +33,22 @@ var Application;
                     console.log(error);
                 });
             };
+
+            $scope.Register = function () {
+                _this.auth.Register($scope.Account, function () {
+                    $scope.IsAuthenticated = true;
+                    $scope.ShowRegistrationForm = false;
+                    $rootScope.$broadcast("updateCollection");
+                }, function (error) {
+                    console.log(error);
+                });
+            };
+
+            this.auth.IsAuthenticated(function () {
+                $scope.IsAuthenticated = true;
+                $scope.IsLoaded = true;
+                $rootScope.$broadcast("updateCollection");
+            });
         };
         return AccountController;
     })();
