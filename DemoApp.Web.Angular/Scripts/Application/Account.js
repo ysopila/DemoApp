@@ -44,10 +44,13 @@ var Application;
                 });
             };
 
-            this.auth.IsAuthenticated(function () {
-                $scope.IsAuthenticated = true;
+            this.auth.IsAuthenticated(function (isAuthenticated, username) {
+                $scope.IsAuthenticated = isAuthenticated;
+                $scope.Account = new Account();
+                $scope.Account.Username = username;
                 $scope.IsLoaded = true;
-                $rootScope.$broadcast("updateCollection");
+                if (isAuthenticated)
+                    $rootScope.$broadcast("updateCollection");
             });
         };
         return AccountController;

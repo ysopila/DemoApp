@@ -35,7 +35,8 @@ namespace DemoApp.Web.Angular.Controllers
                 return Json(new
                 {
                     AuthHeader = string.Format("{0} {1}", "DemoApp", string.Format("{0}:{1}", user.Username, user.AuthToken)),
-                    Success = true
+                    Success = true,
+                    Username = user.Username
                 });
             }
             return Json(new { Success = false, ErrorMessage = "The Username or Password provided is incorrect." });
@@ -51,7 +52,8 @@ namespace DemoApp.Web.Angular.Controllers
             return Json(new
             {
                 AuthHeader = string.Format("{0} {1}", "DemoApp", string.Format("{0}:{1}", user.Username, user.AuthToken)),
-                Success = true
+                Success = true,
+                Username = user.Username
             }, JsonRequestBehavior.AllowGet);
         }
 
@@ -88,7 +90,8 @@ namespace DemoApp.Web.Angular.Controllers
                 return Json(new
                 {
                     AuthHeader = string.Format("{0} {1}", "DemoApp", string.Format("{0}:{1}", user.Username, user.AuthToken)),
-                    Success = true
+                    Success = true,
+                    Username = user.Username
                 });
             }
             return Json(new

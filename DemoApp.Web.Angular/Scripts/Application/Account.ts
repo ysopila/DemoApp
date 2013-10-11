@@ -46,10 +46,13 @@ module Application {
                 }, (error) => { console.log(error); });
             }
 
-            this.auth.IsAuthenticated(() => {
-                $scope.IsAuthenticated = true;
+            this.auth.IsAuthenticated((isAuthenticated: boolean, username: string) => {
+                $scope.IsAuthenticated = isAuthenticated;
+                $scope.Account = new Account();
+                $scope.Account.Username = username;
                 $scope.IsLoaded = true;
-                $rootScope.$broadcast("updateCollection");
+                if (isAuthenticated)
+                    $rootScope.$broadcast("updateCollection");
             });
 
         }

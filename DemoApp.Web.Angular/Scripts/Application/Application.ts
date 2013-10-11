@@ -1,7 +1,7 @@
 /// <reference path="_references.ts"/>
 
 module Application {
-    angular.module('Application', ['ngResource'])
+    angular.module('Application', ['ngResource', 'angularFileUpload'])
         .config(['$routeProvider', '$locationProvider', '$httpProvider',
             ($routeProvider: ng.IRouteProvider, $locationProvider: ng.ILocationProvider, $httpProvider: ng.IHttpProvider) => {
                 $locationProvider.hashPrefix('!');

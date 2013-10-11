@@ -6,6 +6,7 @@ module Application {
         Success: boolean;
         AuthHeader: string;
         ErrorMessage: string;
+        Username: string;
     }
 
     export class Authentication {
@@ -16,12 +17,11 @@ module Application {
             this.$location = $location;
         }
 
-        IsAuthenticated(success: () => void) {
+        IsAuthenticated(success: (isAuthenticated: boolean, username: string) => void) {
             this.$http.get('/Account/IsAuthenticated').success((response: AuthResponse) => {
+                success(response.Success, response.Username);
                 if (response.Success) {
                     this.$http.defaults.headers.common.Authorization = response.AuthHeader;
-                    this.$location.path('/');
-                    success();
                 }
                 this.$location.path('/');
             });
@@ -31,9 +31,9 @@ module Application {
             this.$http.post('/Account/SignIn', model)
                 .success((response: AuthResponse) => {
                     if (response.Success) {
+                        success();
                         this.$http.defaults.headers.common.Authorization = response.AuthHeader;
                         this.$location.path('/');
-                        success();
                     }
                     else
                         alert(response.ErrorMessage);
@@ -54,9 +54,9 @@ module Application {
             this.$http.post('/Account/Register', model)
                 .success((response: AuthResponse) => {
                     if (response.Success) {
+                        success();
                         this.$http.defaults.headers.common.Authorization = response.AuthHeader;
                         this.$location.path('/');
-                        success();
                     }
                     else
                         alert(response.ErrorMessage);

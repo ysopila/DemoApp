@@ -29,7 +29,7 @@ var Application;
     Application.BookService = BookService;
 
     var BookController = (function () {
-        function BookController($scope, $rootScope, $resource, $routeParams) {
+        function BookController($scope, $rootScope, $resource, $routeParams, $fileUploader) {
             if (this.$service == null)
                 this.$service = new BookService($resource);
             if (this.$personService == null)
@@ -44,13 +44,18 @@ var Application;
             this.$service.Get($routeParams.id, function (data) {
                 $scope.Book = data;
                 $scope.AuthorId = $scope.Book.Author.Id;
+                $scope.Uploader = $fileUploader.create({
+                    scope: $scope,
+                    autoUpload: true,
+                    url: '/Api/Content/' + $scope.Book.Id
+                });
             }, function (error) {
                 console.log(error);
             });
 
-            this.SetupScope($scope, $rootScope);
+            this.SetupScope($scope, $rootScope, $fileUploader);
         }
-        BookController.prototype.SetupScope = function ($scope, $rootScope) {
+        BookController.prototype.SetupScope = function ($scope, $rootScope, $fileUploader) {
             var _this = this;
             $scope.$watch('AuthorId', function (id) {
                 angular.forEach($scope.Authors, function (value) {
@@ -60,6 +65,8 @@ var Application;
             });
             $scope.Save = function () {
                 _this.$service.Update($scope.Book, function (data) {
+                    $scope.Book = data;
+                    $scope.AuthorId = $scope.Book.Author.Id;
                     $rootScope.$broadcast('updateCollection');
                 }, function (error) {
                     console.log(error);

@@ -16,10 +16,9 @@ var Application;
         Authentication.prototype.IsAuthenticated = function (success) {
             var _this = this;
             this.$http.get('/Account/IsAuthenticated').success(function (response) {
+                success(response.Success, response.Username);
                 if (response.Success) {
                     _this.$http.defaults.headers.common.Authorization = response.AuthHeader;
-                    _this.$location.path('/');
-                    success();
                 }
                 _this.$location.path('/');
             });
@@ -29,9 +28,9 @@ var Application;
             var _this = this;
             this.$http.post('/Account/SignIn', model).success(function (response) {
                 if (response.Success) {
+                    success();
                     _this.$http.defaults.headers.common.Authorization = response.AuthHeader;
                     _this.$location.path('/');
-                    success();
                 } else
                     alert(response.ErrorMessage);
             }).error(error);
@@ -49,9 +48,9 @@ var Application;
             var _this = this;
             this.$http.post('/Account/Register', model).success(function (response) {
                 if (response.Success) {
+                    success();
                     _this.$http.defaults.headers.common.Authorization = response.AuthHeader;
                     _this.$location.path('/');
-                    success();
                 } else
                     alert(response.ErrorMessage);
             }).error(error);

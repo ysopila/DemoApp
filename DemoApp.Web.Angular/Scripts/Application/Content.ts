@@ -6,11 +6,13 @@ module Application {
         Id: number;
         Name: string;
         Description: string;
-        Type: string;
+        Photo: string; 
+        Type: string; 
         constructor(model: Content) {
             this.Id = model.Id;
             this.Name = model.Name;
             this.Description = model.Description;
+            this.Photo = model.Photo;
             this.Type = model.Type;
         }
     }

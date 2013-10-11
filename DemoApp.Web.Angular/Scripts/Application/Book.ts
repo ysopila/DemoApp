@@ -15,6 +15,7 @@ module Application {
 
     export interface IBookScope extends IScope<Book> {
         Book: Book;
+        Uploader: any;
         Authors: Person[];
         AuthorId: number;
         Save: Function;
@@ -31,7 +32,7 @@ module Application {
         static $editTemplateUrl = '/Content/Views/BookEdit.html';
         private $service: BookService;
         private $personService: PersonService;
-        constructor($scope: IBookScope, $rootScope: ng.IScope, $resource: IResourceService, $routeParams: IRouteParams) {
+        constructor($scope: IBookScope, $rootScope: ng.IScope, $resource: IResourceService, $routeParams: IRouteParams, $fileUploader) {
             if (this.$service == null)
                 this.$service = new BookService($resource);
             if (this.$personService == null)
@@ -44,12 +45,17 @@ module Application {
             this.$service.Get($routeParams.id, (data) => {
                 $scope.Book = data;
                 $scope.AuthorId = $scope.Book.Author.Id;
+                $scope.Uploader = $fileUploader.create({
+                    scope: $scope,
+                    autoUpload: true,
+                    url: '/Api/Content/' + $scope.Book.Id
+                });
             }, (error) => { console.log(error); });
 
-            this.SetupScope($scope, $rootScope);
+            this.SetupScope($scope, $rootScope, $fileUploader);
         }
 
-        SetupScope($scope: IBookScope, $rootScope: ng.IScope) {
+        SetupScope($scope: IBookScope, $rootScope: ng.IScope, $fileUploader) {
             $scope.$watch('AuthorId', (id) => {
                 angular.forEach($scope.Authors, (value: Person) => {
                     if (value.Id == id)
@@ -58,7 +64,11 @@ module Application {
             });
             $scope.Save = () => {
                 this.$service.Update($scope.Book,
-                    (data) => { $rootScope.$broadcast('updateCollection'); },
+                    (data) => {
+                        $scope.Book = data;
+                        $scope.AuthorId = $scope.Book.Author.Id;
+                        $rootScope.$broadcast('updateCollection');
+                    },
                     (error) => { console.log(error); });
             }
         }

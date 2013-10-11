@@ -12,6 +12,7 @@ var Application;
             this.Id = model.Id;
             this.Name = model.Name;
             this.Description = model.Description;
+            this.Photo = model.Photo;
             this.Type = model.Type;
         }
         return Content;

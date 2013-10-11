@@ -36,19 +36,24 @@ var Application;
     Application.PersonService = PersonService;
 
     var PersonController = (function () {
-        function PersonController($scope, $rootScope, $resource, $routeParams) {
+        function PersonController($scope, $rootScope, $resource, $routeParams, $fileUploader) {
             if (this.$service == null)
                 this.$service = new PersonService($resource);
 
             this.$service.Get($routeParams.id, function (data) {
                 $scope.Person = data;
+                $scope.Uploader = $fileUploader.create({
+                    scope: $scope,
+                    autoUpload: true,
+                    url: '/Api/Content/' + $scope.Person.Id
+                });
             }, function (error) {
                 console.log(error);
             });
 
-            this.SetupScope($scope, $rootScope);
+            this.SetupScope($scope, $rootScope, $fileUploader);
         }
-        PersonController.prototype.SetupScope = function ($scope, $rootScope) {
+        PersonController.prototype.SetupScope = function ($scope, $rootScope, $fileUploader) {
             var _this = this;
             $scope.Gender = Gender;
             $scope.MapGender = function () {
@@ -56,6 +61,7 @@ var Application;
             };
             $scope.Save = function () {
                 _this.$service.Update($scope.Person, function (data) {
+                    $scope.Person = data;
                     $rootScope.$broadcast('updateCollection');
                 }, function (error) {
                     console.log(error);

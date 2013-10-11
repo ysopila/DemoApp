@@ -1,7 +1,7 @@
 /// <reference path="_references.ts"/>
 var Application;
 (function (Application) {
-    angular.module('Application', ['ngResource']).config([
+    angular.module('Application', ['ngResource', 'angularFileUpload']).config([
         '$routeProvider',
         '$locationProvider',
         '$httpProvider',
