@@ -114,7 +114,7 @@ namespace DemoApp.Web
 		private static IUnityContainer BuildUnityContainer()
 		{
 			var container = new UnityContainer();
-			container.RegisterType<DbContext, DemoAppDataContext>(new PerCallContextOrRequestLifeTimeManager(), new InjectionConstructor());
+			//container.RegisterType<DbContext, DemoAppDataContext>(new PerCallContextOrRequestLifeTimeManager(), new InjectionConstructor());
 
 			container.RegisterType<IUnitOfWork, UnitOfWork>(new PerCallContextOrRequestLifeTimeManager());
 			container.RegisterType<ISimpleMapper, Mapper>(new PerCallContextOrRequestLifeTimeManager());
