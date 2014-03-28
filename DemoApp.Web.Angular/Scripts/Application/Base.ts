@@ -6,12 +6,18 @@ module Application {
         Collection: T[];
     }
 
-    export interface IResource extends ng.resource.IResourceClass {
-
+    export interface IResource extends ng.resource.IResourceClass<IResource> {
+        update(): IResource;
+        update(dataOrParams: any): IResource;
+        update(dataOrParams: any, success: Function): IResource;
+        update(success: Function, error?: Function): IResource;
+        update(params: any, data: any, success?: Function, error?: Function): IResource;
     }
 
     export interface IResourceService extends ng.resource.IResourceService {
         (url: string, paramDefaults?: any, actionDescriptors?: any): IResource;
+        <T, U>(url: string, paramDefaults?: any, actionDescriptors?: any): U;
+        <T>(url: string, paramDefaults?: any, actionDescriptors?: any): IResource;
     }
 
     export interface IRouteParams {

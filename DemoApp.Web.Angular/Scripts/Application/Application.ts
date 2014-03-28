@@ -28,7 +28,7 @@ module Application {
                 $routeProvider.otherwise({ redirectTo: '/' });
                 $httpProvider.defaults.withCredentials = true;
                 $httpProvider.responseInterceptors.push(['$location', '$q', ($location: ng.ILocationService, $q: ng.IQService) => {
-                    return (promise: ng.IPromise) => {
+                    return (promise: ng.IPromise<any>) => {
                         return promise.then((response: any) => {
                             return response;
                         }, (response: ng.IHttpPromiseCallbackArg) => {

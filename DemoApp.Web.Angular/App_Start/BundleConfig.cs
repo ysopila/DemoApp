@@ -8,11 +8,7 @@ namespace DemoApp.Web.Angular.App_Start
 		{
 			bundles.Add(new ScriptBundle("~/bundles/JS").Include(
 						"~/Scripts/jquery-{version}.js",
-						"~/Scripts/bootstrap.js",
-						"~/Scripts/angular.js",
-						"~/Scripts/angular-file-upload.js",
-						"~/Scripts/angular-route.js",
-						"~/Scripts/angular-resource.js"
+						"~/Scripts/bootstrap.js"
 						));
 
 
