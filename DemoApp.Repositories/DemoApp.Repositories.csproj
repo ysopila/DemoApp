@@ -34,14 +34,17 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -49,12 +52,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ContentObjectRepository.cs" />
-    <Compile Include="IContentObjectRepository.cs" />
-    <Compile Include="IRepository.cs" />
-    <Compile Include="IUserRepository.cs" />
+    <Compile Include="ContentRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository.cs" />
+    <Compile Include="UnitOfWork.cs" />
+    <Compile Include="PersonRepository.cs" />
+    <Compile Include="BookRepository.cs" />
     <Compile Include="UserRepository.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -62,8 +65,12 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DemoApp.DataModel\DemoApp.DataModel.csproj">
+      <Project>{5b9146eb-a1be-4b0b-8d3d-ed1029b1cbd9}</Project>
+      <Name>DemoApp.DataModel</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DemoApp.Data\DemoApp.Data.csproj">
-      <Project>{A5037715-EED9-45E5-A586-FB45EE5DA800}</Project>
+      <Project>{a5037715-eed9-45e5-a586-fb45ee5da800}</Project>
       <Name>DemoApp.Data</Name>
     </ProjectReference>
   </ItemGroup>

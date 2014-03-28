@@ -1,76 +1,69 @@
 ﻿using System.Linq;
-using System.Data.Objects;
 using System.Data;
+using DemoApp.DataModel.Interfaces;
+using System.Data.Entity;
+using System;
 
 namespace DemoApp.Repositories
 {
-    public class Repository<T> : IRepository<T> where T : class
-    {
-        private ObjectContext _context;
+	public class Repository<T> : IRepository<T> where T : class
+	{
+		#region Dependency
+		private IDbContext _context;
 
-        public Repository(ObjectContext context)
-        {
-            _context = context;
-        }
+		public Repository(IDbContext context)
+		{
+			_context = context;
+		}
 
-        public IQueryable<T> Get()
-        {
-            return _context.CreateObjectSet<T>();
-        }
+		#endregion Dependency
 
-        public T Create(T entity)
-        {
-            _context.CreateObjectSet<T>().AddObject(entity);
-            _context.SaveChanges();
-            return entity;
-        }
+		protected virtual IQueryable<T> Query
+		{
+			get { return _context.Set<T>(); }
+		}
 
-        public T Save(T entity)
-        {
-            _context.SaveChanges();
-            return entity;
-        }
+		public System.Collections.Generic.IEnumerable<T> Find(System.Linq.Expressions.Expression<System.Func<T, bool>> filter = null, System.Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null, string includeProperties = "")
+		{
+			IQueryable<T> query = Query;
 
-        public void Delete(T entity)
-        {
-            _context.DeleteObject(entity);
-            _context.SaveChanges();
-        }
+			if (filter != null)
+			{
+				query = query.Where(filter);
+			}
 
-        public ITransaction BeginTransaction()
-        {
-            if (_context.Connection.State != ConnectionState.Open)
-            {
-                _context.Connection.Open();
-            }
-            return new Transaction(_context.Connection.BeginTransaction());
-        }
-    }
+			foreach (var includeProperty in includeProperties.Split
+				(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+			{
+				query = query.Include(includeProperty);
+			}
 
-    internal class Transaction : ITransaction
-    {
-        IDbTransaction _tran;
+			if (orderBy != null)
+			{
+				return orderBy(query).ToList();
+			}
+			else
+			{
+				return query.ToList();
+			}
+		}
 
-        public Transaction(IDbTransaction aTran)
-        {
-            _tran = aTran;
-        }
-        public void Commit()
-        {
-            _tran.Commit();
-            _tran = null;
-        }
+		public void Insert(T entity)
+		{
+			_context.Set<T>().Add(entity);
+		}
 
-        public void Rollback()
-        {
-            _tran.Rollback();
-            _tran = null;
-        }
+		public void Update(T entity)
+		{
+			_context.Set<T>().Attach(entity);
+			_context.Entry<T>(entity).State = EntityState.Modified;
+		}
 
-        public void Dispose()
-        {
-            if (_tran != null)
-                _tran.Rollback();
-        }
-    }
+		public void Delete(T entity)
+		{
+			if (_context.Entry<T>(entity).State == EntityState.Deleted)
+				_context.Set<T>().Attach(entity);
+			_context.Set<T>().Remove(entity);
+		}
+	}
 }

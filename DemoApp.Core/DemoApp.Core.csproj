@@ -40,7 +40,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="SimpleMapper.cs" />
+    <Compile Include="Mapper\ISimpleMapper.cs" />
+    <Compile Include="Mapper\MapperNotFoundException.cs" />
+    <Compile Include="Mapper\SimpleMapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -1,10 +1,8 @@
 ﻿using DemoApp.Business.Models;
-using DemoApp.Business.Services;
+using DemoApp.Business.Services.Abstractions;
 using DemoApp.Web.Angular.Models;
 using DemoApp.Web.Angular.Utils;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Security.Principal;
 using System.Web;
 using System.Web.Mvc;

@@ -1,28 +1,31 @@
 ﻿using System.Data.Entity;
-using DemoApp.Data.Maps;
-using DemoApp.Data.Entities;
+using DemoApp.Data.Configurations;
+using DemoApp.DataModel.Interfaces;
 
 namespace DemoApp.Data
 {
-    public class DemoAppDataContext : DbContext
-    {
-        public DemoAppDataContext() : base("DemoAppContext") { }
+	public class DemoAppDataContext : DbContext, IDbContext
+	{
+		public DemoAppDataContext()
+			: base("DemoAppContext")
+		{
+			this.Configuration.LazyLoadingEnabled = false;
+		}
 
-        static DemoAppDataContext()
-        {
-            Database.SetInitializer<DemoAppDataContext>(new DemoAppDataContextInitializer());
-        }
+		static DemoAppDataContext()
+		{
+			Database.SetInitializer<DemoAppDataContext>(new DemoAppDataContextInitializer());
+		}
 
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        {
-            modelBuilder.Configurations.Add(new ContentObjectMap());
-            modelBuilder.Configurations.Add(new PersonMap());
-            modelBuilder.Configurations.Add(new BookMap());
-        }
-
-        public DbSet<ContentObject> Content { get; set; }
-        public DbSet<Book> Books { get; set; }
-        public DbSet<Person> Persons { get; set; }
-        public DbSet<User> Users { get; set; }
-    }
+		protected override void OnModelCreating(DbModelBuilder modelBuilder)
+		{
+			modelBuilder.Configurations.Add(new ContentObjectConfiguration());
+			modelBuilder.Configurations.Add(new BookConfiguration());
+			modelBuilder.Configurations.Add(new PersonConfiguration());
+			modelBuilder.Configurations.Add(new UserConfiguration());
+		}
+	}
+	internal class DemoAppDataContextInitializer : MigrateDatabaseToLatestVersion<DemoAppDataContext, DemoApp.Data.Migrations.Configuration>
+	{
+	}
 }

@@ -1,6 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoApp.Data", "DemoApp.Data\DemoApp.Data.csproj", "{A5037715-EED9-45E5-A586-FB45EE5DA800}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoApp.Repositories", "DemoApp.Repositories\DemoApp.Repositories.csproj", "{90BA0FA1-4473-45FC-AE84-3D6C6C4806E6}"
@@ -14,6 +16,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoApp.Web.Angular", "DemoApp.Web.Angular\DemoApp.Web.Angular.csproj", "{8E1BAD5A-0E7D-4408-B0FD-2833ADFBA482}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoApp.Api", "DemoApp.Api\DemoApp.Api.csproj", "{95418D3B-BFC0-4C8D-A9A5-2A79BE73E8AD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoApp.DataModel", "DemoApp.DataModel\DemoApp.DataModel.csproj", "{5B9146EB-A1BE-4B0B-8D3D-ED1029B1CBD9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -49,6 +53,10 @@ Global
 		{95418D3B-BFC0-4C8D-A9A5-2A79BE73E8AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{95418D3B-BFC0-4C8D-A9A5-2A79BE73E8AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{95418D3B-BFC0-4C8D-A9A5-2A79BE73E8AD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5B9146EB-A1BE-4B0B-8D3D-ED1029B1CBD9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5B9146EB-A1BE-4B0B-8D3D-ED1029B1CBD9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5B9146EB-A1BE-4B0B-8D3D-ED1029B1CBD9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5B9146EB-A1BE-4B0B-8D3D-ED1029B1CBD9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

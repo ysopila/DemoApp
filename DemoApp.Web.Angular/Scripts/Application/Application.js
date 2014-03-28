@@ -1,10 +1,8 @@
 /// <reference path="_references.ts"/>
 var Application;
 (function (Application) {
-    angular.module('Application', ['ngResource', 'angularFileUpload']).config([
-        '$routeProvider',
-        '$locationProvider',
-        '$httpProvider',
+    angular.module('Application', ['ngResource', 'angularFileUpload', 'ngRoute']).config([
+        '$routeProvider', '$locationProvider', '$httpProvider',
         function ($routeProvider, $locationProvider, $httpProvider) {
             $locationProvider.hashPrefix('!');
             $routeProvider.when('/', {
@@ -30,9 +28,7 @@ var Application;
             $routeProvider.otherwise({ redirectTo: '/' });
             $httpProvider.defaults.withCredentials = true;
             $httpProvider.responseInterceptors.push([
-                '$location',
-                '$q',
-                function ($location, $q) {
+                '$location', '$q', function ($location, $q) {
                     return function (promise) {
                         return promise.then(function (response) {
                             return response;
@@ -44,8 +40,6 @@ var Application;
                             return $q.reject(response);
                         });
                     };
-                }
-            ]);
-        }
-    ]).controller('AccountController', Application.AccountController).controller('ContentController', Application.ContentController).controller('PersonController', Application.PersonController).controller('BookController', Application.BookController);
+                }]);
+        }]).controller('AccountController', Application.AccountController).controller('ContentController', Application.ContentController).controller('PersonController', Application.PersonController).controller('BookController', Application.BookController);
 })(Application || (Application = {}));

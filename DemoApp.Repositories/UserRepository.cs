@@ -1,13 +1,11 @@
-﻿using DemoApp.Data.Entities;
-using System.Data.Objects;
+﻿
 
+using DemoApp.DataModel.Entities;
+using DemoApp.DataModel.Interfaces;
 namespace DemoApp.Repositories
 {
-    public class UserRepository : Repository<User>, IUserRepository
-    {
-        public UserRepository(ObjectContext context)
-            : base(context)
-        {
-        }
+    public class UserRepository : Repository<User>
+	{
+		public UserRepository(IDbContext context) : base(context) { }
     }
 }
