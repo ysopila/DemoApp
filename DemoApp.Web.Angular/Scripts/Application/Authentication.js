@@ -1,4 +1,4 @@
-﻿/// <reference path="_references.ts"/>
+/// <reference path="_references.ts"/>
 var Application;
 (function (Application) {
     var AuthResponse = (function () {
@@ -19,8 +19,8 @@ var Application;
                 success(response.Success, response.Username);
                 if (response.Success) {
                     _this.$http.defaults.headers.common.Authorization = response.AuthHeader;
-                }
-                _this.$location.path('/');
+                } else
+                    _this.$location.path('/');
             });
         };
 
@@ -30,7 +30,6 @@ var Application;
                 if (response.Success) {
                     success();
                     _this.$http.defaults.headers.common.Authorization = response.AuthHeader;
-                    _this.$location.path('/');
                 } else
                     alert(response.ErrorMessage);
             }).error(error);
@@ -50,7 +49,6 @@ var Application;
                 if (response.Success) {
                     success();
                     _this.$http.defaults.headers.common.Authorization = response.AuthHeader;
-                    _this.$location.path('/');
                 } else
                     alert(response.ErrorMessage);
             }).error(error);

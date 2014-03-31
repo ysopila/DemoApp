@@ -1,7 +1,7 @@
-/// <reference path="_references.ts"/>
+﻿/// <reference path="_references.ts"/>
 var Application;
 (function (Application) {
-    angular.module('Application', ['ngResource', 'angularFileUpload', 'ngRoute']).config([
+    angular.module('Application', ['ngResource', 'angularFileUpload', 'ngRoute', 'ui.autocomplete', 'ui.bootstrap.datetimepicker']).config([
         '$routeProvider', '$locationProvider', '$httpProvider',
         function ($routeProvider, $locationProvider, $httpProvider) {
             $locationProvider.hashPrefix('!');
@@ -24,7 +24,7 @@ var Application;
                 templateUrl: Application.BookController.$editTemplateUrl,
                 controller: Application.BookController
             });
-            $routeProvider.when('/book/new', {
+            $routeProvider.when('/book/add/new', {
                 templateUrl: Application.NewBookController.$viewTemplateUrl,
                 controller: Application.NewBookController
             });
@@ -45,5 +45,5 @@ var Application;
                         });
                     };
                 }]);
-        }]).controller('AccountController', Application.AccountController).controller('ContentController', Application.ContentController).controller('PersonController', Application.PersonController).controller('BookController', Application.BookController);
+        }]).controller('AccountController', Application.AccountController).controller('ContentController', Application.ContentController).controller('PersonController', Application.PersonController).controller('NewBookController', Application.NewBookController).controller('BookController', Application.BookController);
 })(Application || (Application = {}));

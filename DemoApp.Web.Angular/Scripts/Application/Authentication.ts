@@ -23,7 +23,8 @@ module Application {
                 if (response.Success) {
                     this.$http.defaults.headers.common.Authorization = response.AuthHeader;
                 }
-                this.$location.path('/');
+                else
+                    this.$location.path('/');
             });
         }
 
@@ -33,7 +34,6 @@ module Application {
                     if (response.Success) {
                         success();
                         this.$http.defaults.headers.common.Authorization = response.AuthHeader;
-                        this.$location.path('/');
                     }
                     else
                         alert(response.ErrorMessage);
@@ -56,7 +56,6 @@ module Application {
                     if (response.Success) {
                         success();
                         this.$http.defaults.headers.common.Authorization = response.AuthHeader;
-                        this.$location.path('/');
                     }
                     else
                         alert(response.ErrorMessage);

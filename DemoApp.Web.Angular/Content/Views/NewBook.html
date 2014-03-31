@@ -1,0 +1,29 @@
+﻿<h1>Add new book:</h1>
+<div class="row">
+    <div class="col-md-6">
+        <div class="form-group">
+            <label for="title">Name: </label>
+            <input type="text" class="form-control" id="title" data-ng-model="CurrentBook.Name" placeholder="input Name" />
+        </div>
+        <div class="form-group">
+            <label for="author">Select Author: <small id="auto-message"></small></label>
+            <div class="input-group" id="test-auto" style="position:relative">
+                <input type="text" class="form-control" id="author" data-ng-model="CurrentBook.Author.Name" data-ui-autocomplete="AuthorAutoCompliteOption">
+                <span class="input-group-btn"><button class="btn btn-default" type="button">Add new Author</button></span>
+            </div>
+        </div>
+        <div class="dropdown form-group">
+            <label for="publish">Published: </label>
+            <div class="dropdown-toggle" id="publish" role="button" data-toggle="dropdown">
+                <div class="input-group">
+                    <input type="text" class="form-control" id="datetimepicker" data-date-type="number" data-ng-value="ViewDate()" data-datetimepicker />
+                    <span class="input-group-btn"><button class="btn btn-default"><span class="glyphicon glyphicon-calendar"></span></button></span>
+                </div>
+            </div>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                <datetimepicker data-ng-model="CurrentBook.Published" data-datetimepicker-config="{ startView: 'day', minView: 'day', dropdownSelector: '#publish' }" />
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="btn btn-success" data-ng-click="Add()">Add</div>

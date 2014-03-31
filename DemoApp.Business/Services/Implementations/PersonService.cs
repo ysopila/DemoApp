@@ -25,6 +25,12 @@ namespace DemoApp.Business.Services.Implementations
 			return _unitOfWork.PersonRepository.Find().Map<Entity.Person, Person>(_mapper.Map<Entity.Person, Person>);
 		}
 
+		public IEnumerable<Person> GetAll(string authorName)
+		{
+			return _unitOfWork.PersonRepository.Find(filter: x => x.Name.Contains(authorName))
+				.Map<Entity.Person, Person>(_mapper.Map<Entity.Person, Person>);
+		}
+
 		public Person Get(int id)
 		{
 			return _mapper.Map<Entity.Person, Person>(_unitOfWork.PersonRepository.Find(filter: x => x.Id == id).SingleOrDefault());
@@ -58,5 +64,6 @@ namespace DemoApp.Business.Services.Implementations
 			_unitOfWork.PersonRepository.Delete(entity);
 			_unitOfWork.Save();
 		}
+
 	}
 }

@@ -1,7 +1,7 @@
 /// <reference path="_references.ts"/>
 
 module Application {
-    angular.module('Application', ['ngResource', 'angularFileUpload', 'ngRoute'])
+    angular.module('Application', ['ngResource', 'angularFileUpload', 'ngRoute', 'ui.autocomplete', 'ui.bootstrap.datetimepicker'])
         .config(['$routeProvider', '$locationProvider', '$httpProvider',
             ($routeProvider: ng.route.IRouteProvider, $locationProvider: ng.ILocationProvider, $httpProvider: ng.IHttpProvider) => {
                 $locationProvider.hashPrefix('!');
@@ -24,7 +24,7 @@ module Application {
                     templateUrl: Application.BookController.$editTemplateUrl,
                     controller: Application.BookController
                 });
-                $routeProvider.when('/book/new', {
+                $routeProvider.when('/book/add/new', {
                     templateUrl: Application.NewBookController.$viewTemplateUrl,
                     controller: Application.NewBookController
                 });
@@ -48,5 +48,6 @@ module Application {
         .controller('AccountController', Application.AccountController)
         .controller('ContentController', Application.ContentController)
         .controller('PersonController', Application.PersonController)
+        .controller('NewBookController', Application.NewBookController)
         .controller('BookController', Application.BookController);
 }

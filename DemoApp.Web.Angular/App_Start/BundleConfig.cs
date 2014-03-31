@@ -8,6 +8,7 @@ namespace DemoApp.Web.Angular.App_Start
 		{
 			bundles.Add(new ScriptBundle("~/bundles/JS").Include(
 						"~/Scripts/jquery-{version}.js",
+						"~/Scripts/jquery-ui-{version}.js",
 						"~/Scripts/bootstrap.js"
 						));
 
@@ -16,7 +17,10 @@ namespace DemoApp.Web.Angular.App_Start
 						"~/Scripts/angular.js",
 						"~/Scripts/angular-resource.js",
 						"~/Scripts/angular-route.js",
-						"~/Scripts/angular-file-upload.js"
+						"~/Scripts/angular-file-upload.js",
+						"~/Scripts/moment.js",
+						"~/Scripts/angular-ui/autocomplete.js",
+						"~/Scripts/angular-ui/datetimepicker.js"
 					));
 
 
@@ -41,7 +45,8 @@ namespace DemoApp.Web.Angular.App_Start
 
 			bundles.Add(new StyleBundle("~/Content/css").Include(
 						"~/Content/bootstrap.css",
-						"~/Content/Site.css"
+						"~/Content/Site.css",
+						"~/Content/datetimepicker.css"
 					));
 		}
 	}

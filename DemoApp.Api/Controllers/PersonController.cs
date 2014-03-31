@@ -6,46 +6,48 @@ using System.Web.Http;
 
 namespace DemoApp.Api.Controllers
 {
-    public class PersonController : ApiController
-    {
-        private IPersonService PersonService { get; set; }
+	public class PersonController : ApiController
+	{
+		private IPersonService PersonService { get; set; }
 
-        public PersonController(IPersonService service)
-        {
-            PersonService = service;
-        }
+		public PersonController(IPersonService service)
+		{
+			PersonService = service;
+		}
 
-        public IEnumerable<Person> Get()
-        {
-            return PersonService.GetAll();
-        }
+		public IEnumerable<Person> Get([FromUri] string authorName = null)
+		{
+			if (string.IsNullOrEmpty(authorName))
+				return PersonService.GetAll();
+			return PersonService.GetAll(authorName);
+		}
 
-        public Person Get(int id)
-        {
-            return PersonService.Get(id);
-        }
+		public Person Get(int id)
+		{
+			return PersonService.Get(id);
+		}
 
-        public Person Post(Person model)
-        {
-            return PersonService.Add(model);
-        }
+		public Person Post(Person model)
+		{
+			return PersonService.Add(model);
+		}
 
-        public Person Put(int id, Person model)
-        {
-            var value = PersonService.Get(id);
-            if (value == null)
-                throw new HttpResponseException(HttpStatusCode.NotFound);
+		public Person Put(int id, Person model)
+		{
+			var value = PersonService.Get(id);
+			if (value == null)
+				throw new HttpResponseException(HttpStatusCode.NotFound);
 
-            return PersonService.Save(model);
-        }
+			return PersonService.Save(model);
+		}
 
-        public void Delete(int id)
-        {
-            var model = PersonService.Get(id);
-            if (model == null)
-                throw new HttpResponseException(HttpStatusCode.NotFound);
+		public void Delete(int id)
+		{
+			var model = PersonService.Get(id);
+			if (model == null)
+				throw new HttpResponseException(HttpStatusCode.NotFound);
 
-            PersonService.Delete(model.Id);
-        }
-    }
+			PersonService.Delete(model.Id);
+		}
+	}
 }
