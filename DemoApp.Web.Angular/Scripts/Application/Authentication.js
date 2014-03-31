@@ -1,4 +1,4 @@
-/// <reference path="_references.ts"/>
+﻿/// <reference path="_references.ts"/>
 var Application;
 (function (Application) {
     var AuthResponse = (function () {

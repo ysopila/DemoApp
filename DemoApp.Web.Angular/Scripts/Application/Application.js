@@ -1,4 +1,4 @@
-﻿/// <reference path="_references.ts"/>
+/// <reference path="_references.ts"/>
 var Application;
 (function (Application) {
     angular.module('Application', ['ngResource', 'angularFileUpload', 'ngRoute']).config([
@@ -23,6 +23,10 @@ var Application;
             $routeProvider.when('/book/edit/:id', {
                 templateUrl: Application.BookController.$editTemplateUrl,
                 controller: Application.BookController
+            });
+            $routeProvider.when('/book/new', {
+                templateUrl: Application.NewBookController.$viewTemplateUrl,
+                controller: Application.NewBookController
             });
 
             $routeProvider.otherwise({ redirectTo: '/' });

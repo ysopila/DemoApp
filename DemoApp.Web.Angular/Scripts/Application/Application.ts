@@ -3,7 +3,7 @@
 module Application {
     angular.module('Application', ['ngResource', 'angularFileUpload', 'ngRoute'])
         .config(['$routeProvider', '$locationProvider', '$httpProvider',
-            ($routeProvider: ng.IRouteProvider, $locationProvider: ng.ILocationProvider, $httpProvider: ng.IHttpProvider) => {
+            ($routeProvider: ng.route.IRouteProvider, $locationProvider: ng.ILocationProvider, $httpProvider: ng.IHttpProvider) => {
                 $locationProvider.hashPrefix('!');
                 $routeProvider.when('/', {
                     controller: Application.ContentController
@@ -24,6 +24,10 @@ module Application {
                     templateUrl: Application.BookController.$editTemplateUrl,
                     controller: Application.BookController
                 });
+                $routeProvider.when('/book/new', {
+                    templateUrl: Application.NewBookController.$viewTemplateUrl,
+                    controller: Application.NewBookController
+                });
 
                 $routeProvider.otherwise({ redirectTo: '/' });
                 $httpProvider.defaults.withCredentials = true;
@@ -31,7 +35,7 @@ module Application {
                     return (promise: ng.IPromise<any>) => {
                         return promise.then((response: any) => {
                             return response;
-                        }, (response: ng.IHttpPromiseCallbackArg) => {
+                        }, (response: ng.IHttpPromiseCallbackArg<any>) => {
                                 if (response.status === 401) {
                                     $location.path('/');
                                     return $q.reject(response);

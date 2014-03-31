@@ -1,13 +1,6 @@
-/// <reference path="_references.ts"/>
+﻿/// <reference path="../_references.ts"/>
 var Application;
 (function (Application) {
-    var Account = (function () {
-        function Account() {
-        }
-        return Account;
-    })();
-    Application.Account = Account;
-
     var AccountController = (function () {
         function AccountController($scope, $rootScope, $http, $location) {
             this.auth = new Application.Authentication($http, $location);
@@ -46,7 +39,7 @@ var Application;
 
             this.auth.IsAuthenticated(function (isAuthenticated, username) {
                 $scope.IsAuthenticated = isAuthenticated;
-                $scope.Account = new Account();
+                $scope.Account = new Application.Account();
                 $scope.Account.Username = username;
                 $scope.IsLoaded = true;
                 if (isAuthenticated)

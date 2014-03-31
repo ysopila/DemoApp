@@ -1,38 +1,12 @@
-/// <reference path="_references.ts"/>
+/// <reference path="../_references.ts"/>
 
 module Application {
-
-    export enum Gender {
-        Male,
-        Female
-    }
-
-    export class Person extends Content {
-        FirstName: string;
-        LastName: string;
-        BirthDate: string;
-        Gender: Gender;
-        constructor(model: Person) {
-            super(model);
-            this.FirstName = model.FirstName;
-            this.LastName = model.LastName;
-            this.BirthDate = model.BirthDate;
-            this.Gender = model.Gender;
-        }
-    }
-
     export interface IPersonScope extends IScope<Person> {
         Person: Person;
         Uploader: any;
         MapGender(): Object;
         Save: Function;
         Gender: any;
-    }
-
-    export class PersonService extends Service<Person> {
-        constructor($resource: IResourceService) {
-            super('Person', $resource);
-        }
     }
 
     export class PersonController {

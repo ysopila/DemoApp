@@ -1,11 +1,6 @@
-/// <reference path="_references.ts"/>
+/// <reference path="../_references.ts"/>
 
 module Application {
-    export class Account {
-        Username: string;
-        Password: string;
-    }
-
     export interface IAccountScope extends IScope<Account> {
         SignIn: Function;
         SignOut: Function;

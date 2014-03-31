@@ -61,7 +61,12 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="DemoApp_Repository_Person_Test.cs" />
     <Compile Include="DemoApp_Repository_Book_Test.cs" />
+    <Compile Include="DemoApp_Repository_Content_Test .cs" />
+    <Compile Include="DemoApp_Repository_User_Test.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="FakeDbSet.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
